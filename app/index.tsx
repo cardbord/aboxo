@@ -7,7 +7,6 @@ import { Collapsible } from "@/components/Collapsible";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
-import Ionicons from '@expo/vector-icons/Ionicons';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
