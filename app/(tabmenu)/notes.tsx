@@ -21,8 +21,6 @@ Notifications.setNotificationHandler({
 
 var f = 'f'
 
-   
-
 
 
 export default function NotesPage() {
@@ -68,12 +66,16 @@ export default function NotesPage() {
                     style={styles.headerImage}
                     />
                }>
-
+                    
                     <ThemedView style={styles.titleContainer}>
                     <ThemedText type="title" darkColor="lightblue">
-                         not
-                         <ThemedText type="title" darkColor="pink">es!</ThemedText>
+                         notes
+                         <ThemedText type="title" darkColor="pink">!</ThemedText>
                     </ThemedText>
+                    </ThemedView>
+
+                    <ThemedView>
+                         <ThemedText darkColor="pink" type="default" style={{opacity:0.3}}>- your changes are autosaved!</ThemedText>
                     </ThemedView>
 
                     <ThemedView>
@@ -81,18 +83,21 @@ export default function NotesPage() {
                          <TextInput
                               editable
                               multiline
-                              numberOfLines={4}
+                              numberOfLines={12}
                               maxLength={4000}
-                              onChangeText={text => {onChangeText(text); saveData();}}
+                              onChangeText={text => {onChangeText(text);}}
+                              onChange={() => {saveData();}}
                               value={value}
-                              style={{padding: 10, color: 'pink'}}
+                              style={{padding: 1, color: '#dfb7f7', fontSize:18, alignContent:'flex-start',}}
+                              
                          />
 
                          
 
 
                     </ThemedView>      
-
+                    
+                    
 
 
           </ParallaxScrollView>
