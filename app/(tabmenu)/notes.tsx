@@ -75,7 +75,7 @@ export default function NotesPage() {
                     </ThemedView>
 
                     <ThemedView>
-                         <ThemedText darkColor="pink" type="default" style={{opacity:0.3}}>- your changes are autosaved!</ThemedText>
+                         <ThemedText darkColor="pink" type="default" style={{opacity:0.3, fontSize:13}}>~your changes are autosaved!</ThemedText>
                     </ThemedView>
 
                     <ThemedView>

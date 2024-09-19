@@ -17,6 +17,17 @@ export const schedulePushNotification = async (timePeriod:number) => {
   });
 };
 
+export const schedulePushNotificationNonRepeat = async (dateTime:any, contentData:any) => {
+  await Notifications.scheduleNotificationAsync({
+    identifier: "notif",
+    content: contentData,
+    trigger: {
+      date:dateTime,
+    }
+  });
+};
+
+
 export const registerForPushNotificationsAsync = async () => {
   let token: string = "";
 

@@ -1,5 +1,5 @@
-import { Text, View, Pressable, StyleSheet, Image } from "react-native";
-import { useState } from "react";
+import { Text, View, Pressable, StyleSheet, Image, TextInput } from "react-native";
+import { useState, useEffect } from "react";
 import * as Notifications from "expo-notifications";
 import {useLocalNotification} from "@/hooks/useLocalNotification"
 import { schedulePushNotification } from "@/utils/handle-local-notifications"; 
@@ -7,6 +7,7 @@ import { Collapsible } from "@/components/Collapsible";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
+
 
 
 
@@ -30,7 +31,16 @@ export default function Index() {
     await schedulePushNotification(timePeriodvariable);
   
   }
+  const handleDateNotification = async() => {
+    
+    const currentDate = new Date(Date.now())
+    currentDate
+    
+    
+  }
   
+
+
   
 
 
