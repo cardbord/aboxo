@@ -2,13 +2,70 @@ import { Text, View, Pressable, StyleSheet, Image, TextInput } from "react-nativ
 import { useState, useEffect } from "react";
 import * as Notifications from "expo-notifications";
 import {useLocalNotification} from "@/hooks/useLocalNotification"
-import { schedulePushNotification } from "@/utils/handle-local-notifications"; 
+import { schedulePushNotification, schedulePushNotificationNonRepeat } from "@/utils/handle-local-notifications"; 
 import { Collapsible } from "@/components/Collapsible";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 
-
+const SCHEDULE = [
+  {
+    '8:35':'form time',
+    '9:00':'double physics',
+    '10:45':'breaktime!',
+    '11:10':'free!!',
+    '12:00':'maths with amlani',
+    '12:55':'lunch..',
+    '13:30':'math club',
+    '14:10':'math with myers',
+    '15:05':'free!!',
+    '16:00':'end',
+  },
+  {
+    '8:35':'form time',
+    '9:00':'pshe/free',
+    '9:50':'disc maths with amlani',
+    '10:45':'breaktime!',
+    '11:10':'double computer',
+    '12:55':'lunch..',
+    '14:10':'double physics',
+    '16:00':'end',
+  },
+  {
+    '8:35':'form time',
+    '9:00':'math with myers',
+    '9:50':'math with barge',
+    '10:45':'breaktime!',
+    '11:10':'afp math with myers',
+    '12:00':'free!!',
+    '12:55':'lunch..',
+    '13:35':'connexions',
+    '16:00':'end',
+  },
+  {
+    '8:35':'form time',
+    '9:00':'double compute with mccun',
+    '10:45':'breaktime!',
+    '11:10':'physics with moyes',
+    '12:00':'freee!!!',
+    '12:55':'lunch..',
+    '14:10':'math with amlani',
+    '15:05':'maths with barge',
+    '16:00':'end',
+  },
+  {
+    '8:35':'form time',
+    '9:00':'disc math with amlani',
+    '9:50':'afp maths with myers',
+    '10:45':'prefect duty!',
+    '11:10':'double compute with mattu',
+    '12:55':'lunch..',
+    '13:30':'john cipher',
+    '14:10':'physics with blake',
+    '15:05':'interest options?',
+    '16:00':'end',
+  }
+];
 
 
 Notifications.setNotificationHandler({
@@ -33,13 +90,29 @@ export default function Index() {
   }
   const handleDateNotification = async() => {
     
-    const currentDate = new Date(Date.now())
-    currentDate
+    const currentDate = new Date(Date.now());
+    let day = currentDate.getDay();
     
+    if(day != 0  && day != 6) {
+      day = day - 1;
+      for(const [time, activity] of Object.entries(SCHEDULE[day])) {
+        const hourAndMinutes = time.split(':');
+        const dateFormed = new Date(Date.now())
+        dateFormed.setHours(Number(hourAndMinutes[0]));
+        dateFormed.setMinutes(Number(hourAndMinutes[1]) - 6);
+        const content = {
+          title: activity,
+          subtitle: "round the corner..",
+          body: `at ${time}`,
+          color:'#30cf8f',
+        }
+        await schedulePushNotificationNonRepeat(time, dateFormed, content)
+      }
+    }
     
   }
   
-
+  handleDateNotification();
 
   
 

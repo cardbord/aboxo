@@ -8,7 +8,7 @@ export const schedulePushNotification = async (timePeriod:number) => {
     content: {
       title: "im notifying u",
       subtitle: "heyy there",
-      body: "u can never escape :3"
+      body: "u can never escape :3",
     },
     trigger: {
       seconds: timePeriod,
@@ -17,12 +17,14 @@ export const schedulePushNotification = async (timePeriod:number) => {
   });
 };
 
-export const schedulePushNotificationNonRepeat = async (dateTime:any, contentData:any) => {
+export const schedulePushNotificationNonRepeat = async (identifier:string, dateTime:Date, contentData:any) => {
+  dateTime.setSeconds(0);
+  
   await Notifications.scheduleNotificationAsync({
-    identifier: "notif",
+    identifier: identifier,
     content: contentData,
     trigger: {
-      date:dateTime,
+      date: dateTime
     }
   });
 };
