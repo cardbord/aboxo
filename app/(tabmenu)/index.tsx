@@ -104,17 +104,14 @@ export default function Index() {
           title: activity,
           subtitle: "round the corner..",
           body: `at ${time}`,
-          color:'#30cf8f',
         }
-        await schedulePushNotificationNonRepeat(time, dateFormed, content)
+        await schedulePushNotificationNonRepeat(hourAndMinutes[0], dateFormed, content)
+        console.log(`notif set for ${time} with activity ${activity} with date ${dateFormed}`)
       }
     }
     
   }
-  
-  handleDateNotification();
 
-  
 
 
   return (
@@ -442,6 +439,11 @@ export default function Index() {
       
     </Pressable>      
     
+      <Pressable style={styles.button} onPress={handleDateNotification}>
+        
+      <Text>{ "set notifications for the day!" }</Text>
+
+    </Pressable>
           
     
 
